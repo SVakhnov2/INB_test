@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RandomNumber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class RandomNumbersController extends Controller
 {
@@ -22,9 +23,13 @@ class RandomNumbersController extends Controller
     public function retrieve($id)
     {
 
-        if (!is_numeric($id) || intval($id) != $id) {
+        $validator = Validator::make(['id' => $id], [
+            'id' => 'required|integer|exists:random_numbers,id',
+        ]);
+
+        if ($validator->fails()) {
             return response()->json([
-                'error' => 'Invalid ID'
+                'error' => $validator->errors()
             ], 400);
         }
 

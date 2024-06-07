@@ -8,7 +8,7 @@ This API provides two endpoints for generating and retrieving random numbers.
 ### Generate Random Number
 
 - URL: /api/generate
-- Method: GET
+- Method: POST
 - Description: Generates a random number and stores it in the database. Returns the ID and the generated number.
 
 Response

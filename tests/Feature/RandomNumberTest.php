@@ -11,7 +11,7 @@ class RandomNumberTest extends TestCase
 
     public function testGenerate()
     {
-        $response = $this->get('/api/generate');
+        $response = $this->post('/api/generate');
 
         $response->assertStatus(200);
         $response->assertJsonStructure([
@@ -22,7 +22,7 @@ class RandomNumberTest extends TestCase
 
     public function testRetrieve()
     {
-        $response = $this->get('/api/generate');
+        $response = $this->post('/api/generate');
         $id = $response->json('id');
 
         $response = $this->get("/api/retrieve/{$id}");
